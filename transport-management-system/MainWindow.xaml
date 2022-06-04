@@ -4,9 +4,150 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:transport_management_system"
+        xmlns:viewModel="clr-namespace:transport_management_system.MVVM.ViewModel"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="MainWindow"
+        Height="600" Width="920"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        Background="Transparent"
+        AllowsTransparency="True">
 
-    </Grid>
+    <Window.DataContext>
+        <viewModel:MainViewModel />
+    </Window.DataContext>
+    <Border Background="#272537" CornerRadius="10" MouseDown="Window_MouseDown">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="1"
+                        Margin="0, 0, 0, 0"
+                        >
+                <TextBlock 
+                        Grid.Row="0"
+                        Grid.ColumnSpan="2"
+                        Text="AUTORZY:"
+                        TextAlignment="Center"
+                       VerticalAlignment="Bottom"
+                    Margin="0 0 0 0"
+                       FontSize="14"
+                       FontWeight="DemiBold"
+                       Foreground="White" FontFamily="0Arame"
+                    Background="#16151e">
+
+
+                </TextBlock>
+                <TextBlock 
+                        Grid.Row="0"
+                        Grid.ColumnSpan="2"
+                        Text="Przemysław &amp; Artur"
+                        TextAlignment="Center"
+                       VerticalAlignment="Bottom"
+                       FontSize="14"
+                       FontWeight="DemiBold"
+                       Foreground="White" FontFamily="0Arame"
+                    Background="#16151e" RenderTransformOrigin="0.5,0.5">
+                    <TextBlock.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-0.262"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </TextBlock.RenderTransform>
+
+
+                </TextBlock>
+                <RadioButton Content="Zlecenia" 
+                             Height="50"
+                             Foreground="White"
+                             FontSize="14"
+                             Margin="0 40 0 0"
+                             Style="{StaticResource MenuButtonTheme}"
+                             IsChecked="True"
+                             Command="{Binding OrdersViewCommand}"/>
+
+                <RadioButton Content="Kierowcy" 
+                             Height="50"
+                             Foreground="White"
+                             FontSize="14"
+                             Style="{StaticResource MenuButtonTheme}"
+                             Command="{Binding DriversView}"/>
+                <RadioButton Content="Samochody" 
+                             Height="50"
+                             Foreground="White"
+                             FontSize="14"
+                             Style="{StaticResource MenuButtonTheme}"
+                             Command="{Binding CarsViewCommand}"/>
+
+                <RadioButton Content="Klienci" 
+                             Height="50"
+                             Foreground="White"
+                             FontSize="14"
+                             Style="{StaticResource MenuButtonTheme}"
+                             Command="{Binding CompaniesViewCommand}"/>
+
+                <RadioButton Content="Trasy" 
+                             Height="50"
+                             Foreground="White"
+                             FontSize="14"
+                             Style="{StaticResource MenuButtonTheme}"
+                             Command="{Binding RoutesViewCommand}"/>
+            </StackPanel>
+            <Border CornerRadius="10 10 0 0"  Grid.Row="0"
+                        Grid.ColumnSpan="2">
+                <Border.Background>
+
+                    <SolidColorBrush Color="Black" Opacity="0.3"/>
+                </Border.Background>
+
+                <TextBlock 
+                        Grid.Row="0"
+                        Grid.ColumnSpan="2"
+                        Text="System Zarządzający Transportem ®"
+                        TextAlignment="Center"
+                       VerticalAlignment="Center"
+                       FontSize="36"
+                       FontWeight="DemiBold"
+                       Foreground="White" FontFamily="0Arame">
+                    <TextBlock.Effect>
+                        <DropShadowEffect
+                 ShadowDepth="4"
+                      Direction="330"
+                      Color="Black"
+                      Opacity="0.50"
+                      BlurRadius="4"/>
+                    </TextBlock.Effect>
+                </TextBlock>
+            </Border>
+            <Button Grid.Column="1"
+                Width="50"
+                Height="20"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Margin="0,0,50,0"
+                Click="MinimizeApplicationOnClick"
+                Style="{StaticResource WindowBarMinimizeButtonTheme}" />
+            <Button Grid.Column="1"
+                Width="50"
+                Height="20"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Click="CloseApplicationOnClick"
+                Style="{StaticResource WindowBarCloseButtonTheme}"/>
+
+            <ContentControl Grid.Row="1"
+                            Grid.Column="1"
+                            Margin="0" 
+                            Content="{Binding CurrentView}"/>
+        </Grid>
+    </Border>
 </Window>
