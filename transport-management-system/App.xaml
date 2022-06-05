@@ -9,7 +9,6 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Theme/MenuButtonTheme.xaml" />
-
                 <ResourceDictionary Source="Theme/WindowBarCloseButtonTheme.xaml" />
                 <ResourceDictionary Source="Theme/WindowBarMinimizeButtonTheme.xaml" />
             </ResourceDictionary.MergedDictionaries>
