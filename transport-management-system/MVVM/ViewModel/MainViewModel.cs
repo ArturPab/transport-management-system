@@ -11,7 +11,6 @@ namespace transport_management_system.MVVM.ViewModel
         public RelayCommand OrdersViewCommand { get; set; }
         public RelayCommand RoutesViewCommand { get; set; }
 
-
         public CarsViewModel CarsVM { get; set; }
         public CompaniesViewModel CompaniesVM { get; set; }
         public DriversViewModel DriversVM { get; set; }

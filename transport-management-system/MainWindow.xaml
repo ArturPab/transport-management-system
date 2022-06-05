@@ -43,7 +43,6 @@
                        Foreground="White" FontFamily="0Arame"
                     Background="#16151e">
 
-
                 </TextBlock>
                 <TextBlock 
                         Grid.Row="0"
@@ -63,8 +62,6 @@
                             <TranslateTransform/>
                         </TransformGroup>
                     </TextBlock.RenderTransform>
-
-
                 </TextBlock>
                 <RadioButton Content="Zlecenia" 
                              Height="50"
@@ -74,7 +71,6 @@
                              Style="{StaticResource MenuButtonTheme}"
                              IsChecked="True"
                              Command="{Binding OrdersViewCommand}"/>
-
                 <RadioButton Content="Kierowcy" 
                              Height="50"
                              Foreground="White"
@@ -87,14 +83,12 @@
                              FontSize="14"
                              Style="{StaticResource MenuButtonTheme}"
                              Command="{Binding CarsViewCommand}"/>
-
                 <RadioButton Content="Klienci" 
                              Height="50"
                              Foreground="White"
                              FontSize="14"
                              Style="{StaticResource MenuButtonTheme}"
                              Command="{Binding CompaniesViewCommand}"/>
-
                 <RadioButton Content="Trasy" 
                              Height="50"
                              Foreground="White"
@@ -105,10 +99,8 @@
             <Border CornerRadius="10 10 0 0"  Grid.Row="0"
                         Grid.ColumnSpan="2">
                 <Border.Background>
-
                     <SolidColorBrush Color="Black" Opacity="0.3"/>
                 </Border.Background>
-
                 <TextBlock 
                         Grid.Row="0"
                         Grid.ColumnSpan="2"
@@ -143,7 +135,6 @@
                 VerticalAlignment="Top"
                 Click="CloseApplicationOnClick"
                 Style="{StaticResource WindowBarCloseButtonTheme}"/>
-
             <ContentControl Grid.Row="1"
                             Grid.Column="1"
                             Margin="0" 
