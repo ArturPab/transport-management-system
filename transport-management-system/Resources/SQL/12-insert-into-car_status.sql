@@ -1,0 +1,1 @@
+﻿insert into carStatus values (null, 'available'), (null, 'busy'), (null, 'broken');
