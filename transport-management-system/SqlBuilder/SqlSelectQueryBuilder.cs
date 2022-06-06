@@ -19,7 +19,6 @@ namespace transport_management_system.SQLBuilder
 
             _select.AddRange(columns.Select(c => c.Trim()));
 
-
             return this;
         }
 
