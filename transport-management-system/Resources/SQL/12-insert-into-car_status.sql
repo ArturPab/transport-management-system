@@ -1,1 +1,2 @@
-﻿insert into carStatus values (null, 'available'), (null, 'busy'), (null, 'broken');
+﻿delete from carStatus;
+insert into carStatus values (1, 'available'), (2, 'busy'), (3, 'broken');
