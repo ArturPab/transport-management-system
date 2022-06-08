@@ -1,4 +1,3 @@
-
 CREATE TABLE if not EXISTS `car` (
   `Id` int NOT NULL AUTO_INCREMENT,
   `Mark` varchar(20) DEFAULT NULL,

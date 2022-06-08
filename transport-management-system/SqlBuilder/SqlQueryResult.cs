@@ -14,16 +14,18 @@ namespace transport_management_system.SqlBuilder
             this.query = query;
         }
 
-        public List<T> ExecuteQuery<T>() where T : new()
+        public List<T> ExecuteQuery<T>() where T : class
         {
             var results = new List<T>();
             using (var connection = DBConnectionService.Instance.Connection)
             {
-                MySqlCommand command = new MySqlCommand(query, connection);
+                MySqlCommand command = new(query, connection);
                 connection.Open();
                 var reader = command.ExecuteReader();
-                while (reader.Read())
-                    results.Add((T)Activator.CreateInstance(typeof(T), new object[] { reader }));
+                while (reader.Read()) {
+                    var model = (T)Activator.CreateInstance(typeof(T), reader)!;
+                    results.Add(model);
+                }
                 connection.Close();
             }
             return results;

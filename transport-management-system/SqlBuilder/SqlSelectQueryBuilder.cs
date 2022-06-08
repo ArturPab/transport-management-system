@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using transport_management_system.SqlBuilder;
 using transport_management_system.SqlBuilder.Enums;
 
 namespace transport_management_system.SQLBuilder
@@ -65,7 +66,7 @@ namespace transport_management_system.SQLBuilder
             _ => throw new ArgumentOutOfRangeException(nameof(@operator), @operator, null)
         };
 
-        public string Build()
+        public SqlQueryResult Build()
         {
             var query = new StringBuilder();
 
@@ -87,7 +88,7 @@ namespace transport_management_system.SQLBuilder
 
             Reset();
 
-            return query.ToString();
+            return new SqlQueryResult(query.ToString());
         }
 
         private void Reset()

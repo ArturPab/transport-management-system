@@ -1,7 +1,7 @@
 ﻿using Xunit;
 using FluentAssertions;
 using transport_management_system.SQLBuilder;
-using transport_management_system.SqlBuilder.Enums;
+using transport_management_system.MVVM.Model;
 
 namespace Tests.SqlBuilder
 {
@@ -12,24 +12,13 @@ namespace Tests.SqlBuilder
         {
             var builder = new SqlSelectQueryBuilder();
 
-            var query1 = builder.Select("Name", "Age")
-                .From("Person")
-                .Where("Age", WhereOperators.Equal, 2)
-                .Build();
+            var companies = builder.SelectAllProperties<Company>()
+                .From("company")
+                .Build()
+                .ExecuteQuery<Company>();
 
-            var query2 = builder.SelectAllProperties<Person>()
-                .From("Person")
-                .Where("Age", WhereOperators.Equal, 2)
-                .Build();
 
-            query1.Should().Be(query2);
-            query2.Should().Be("SELECT Name, Age FROM Person WHERE Age = 2;");
-        }
-
-        private class Person
-        {
-            public string Name { get; set; }
-            public uint Age { get; set; }
+            companies.Should().HaveCount(1);
         }
     }
 }
