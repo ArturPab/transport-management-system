@@ -1,8 +1,8 @@
-﻿namespace transport_management_system.MVVM.Model
+﻿namespace transport_management_system.Domain
 {
     public class Address
     {
-        public int Id { get; set; }
+        public int? Id { get; set; }
         public string? Country { get; set; }
         public string? PostalCode { get; set; }
         public string? City { get; set; }

@@ -13,7 +13,7 @@ public class OrderStatusLookup
 }
 public enum OrderStatus
 {
-    Pending,
+    Pending = 1,
     InProgress,
     Done,
 }
