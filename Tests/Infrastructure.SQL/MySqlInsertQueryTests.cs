@@ -1,13 +1,13 @@
 ﻿using Xunit;
 using FluentAssertions;
-using transport_management_system.Database.SQL.Enums;
-using transport_management_system.Database.SQL.QueryBuilders;
 using transport_management_system.Domain;
 using transport_management_system.Infrastructure.SQL;
+using transport_management_system.Infrastructure.SQL.Enums;
+using transport_management_system.Infrastructure.SQL.QueryBuilders;
 
 namespace Tests.SqlBuilder
 {
-    public class SqlSelectBuilderTests
+    public class MySqlInsertQueryTests
     {
         [Fact]
         public void SqlInsertQuery_ForGivenModel_AddToDatabase()
