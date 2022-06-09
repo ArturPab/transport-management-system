@@ -2,7 +2,7 @@
 {
     public class Route
     {
-        public int Id { get; set; }
+        public int? Id { get; set; }
         public float RouteLength { get; set; }
         public int ToAddressId { get; set; }
         public Address ToAddress { get; set; }

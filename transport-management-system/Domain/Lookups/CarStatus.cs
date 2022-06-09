@@ -13,7 +13,7 @@ namespace transport_management_system.Common.Lookups
     }
     public enum CarStatus
     {
-        Available,
+        Available = 1,
         Busy,
         Broken,
     }

@@ -52,7 +52,7 @@ namespace transport_management_system.Database.SQL.QueryBuilders
             if (value is null)
                 throw new ArgumentException("Value can not be empty");
 
-            var parameterName = $"p{_parametersCounter++}";
+            var parameterName = $"@p{_parametersCounter++}";
             _parameters.Add(new MySqlParameter(parameterName, value));
 
             var condition = string.Concat(column, GetSqlWhereOperatorString(@operator), parameterName);

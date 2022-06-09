@@ -22,7 +22,7 @@ public class Car
         Payload = payload;
         ProductionYear = productionYear;
         Vin = vin;
-        StatusId = 0;
+        StatusId = 1;
     }
 
     public int? Id { get; set; }
