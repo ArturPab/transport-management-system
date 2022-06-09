@@ -16,12 +16,12 @@ namespace transport_management_system.Infrastructure.SQL
         {
             _tableName = tableName;
 
-            var property = typeof(T).GetProperties().Where(p => !p.GetAccessors()[0].IsVirtual);
-            foreach (var prop in property)
+            var properties = typeof(T).GetProperties().Where(p => !p.GetAccessors()[0].IsVirtual);
+            foreach (var property in properties)
             {
                 var parameterName = $"@p{_parametersCounter++}";
 
-                var value = prop.GetValue(model);
+                var value = property.GetValue(model);
                 _parameters.Add(new MySqlParameter(parameterName, value));
             }
         }
