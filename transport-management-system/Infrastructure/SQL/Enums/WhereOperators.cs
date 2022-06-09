@@ -1,4 +1,4 @@
-﻿namespace transport_management_system.SqlBuilder.Enums
+﻿namespace transport_management_system.Database.SQL.Enums
 {
     public enum WhereOperators
     {

@@ -2,18 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using transport_management_system.SqlBuilder;
-using transport_management_system.SqlBuilder.Enums;
+using MySql.Data.MySqlClient;
+using transport_management_system.Database.SQL.Enums;
 
-namespace transport_management_system.SQLBuilder
+namespace transport_management_system.Database.SQL.QueryBuilders
 {
-    public class SqlSelectQueryBuilder
+    public class MySqlSelectQueryBuilder
     {
         private readonly List<string> _select = new();
         private readonly List<string> _where = new();
+        private readonly List<MySqlParameter> _parameters = new();
+        private int _parametersCounter = 0;
+
         private string _dataSource = string.Empty;
 
-        public SqlSelectQueryBuilder Select(params string[] columns)
+        public MySqlSelectQueryBuilder Select(params string[] columns)
         {
             if (columns is null || columns.Length == 0)
                 throw new ArgumentException("Columns can not be empty");
@@ -23,15 +26,15 @@ namespace transport_management_system.SQLBuilder
             return this;
         }
 
-        public SqlSelectQueryBuilder SelectAllProperties<T>() where T : class
+        public MySqlSelectQueryBuilder SelectAllProperties<T>() where T : class
         {
-            var props = typeof(T).GetProperties();
+            var props = typeof(T).GetProperties().Where(p => !p.GetAccessors()[0].IsVirtual).ToArray();
             var cols = props.Select(p => p.Name.Trim()).ToArray();
 
             return Select(cols);
         }
 
-        public SqlSelectQueryBuilder From(string dataSource)
+        public MySqlSelectQueryBuilder From(string dataSource)
         {
             if (dataSource is null || dataSource.Length == 0)
                 throw new ArgumentException("Data source can not be empty");
@@ -41,7 +44,7 @@ namespace transport_management_system.SQLBuilder
             return this;
         }
 
-        public SqlSelectQueryBuilder Where(string column, WhereOperators @operator, object value)
+        public MySqlSelectQueryBuilder Where(string column, WhereOperators @operator, object value)
         {
             if (column is null || column.Length == 0)
                 throw new ArgumentException("Column can not be empty");
@@ -49,13 +52,16 @@ namespace transport_management_system.SQLBuilder
             if (value is null)
                 throw new ArgumentException("Value can not be empty");
 
-            var condition = string.Concat(column, GetSqlWhereOperatorString(@operator), value.ToString());
+            var parameterName = $"p{_parametersCounter++}";
+            _parameters.Add(new MySqlParameter(parameterName, value));
+
+            var condition = string.Concat(column, GetSqlWhereOperatorString(@operator), parameterName);
             _where.Add(condition);
 
             return this;
         }
 
-        private string GetSqlWhereOperatorString(WhereOperators @operator) => @operator switch
+        private static string GetSqlWhereOperatorString(WhereOperators @operator) => @operator switch
         {
             WhereOperators.Equal => " = ",
             WhereOperators.GreaterThan => " > ",
@@ -66,7 +72,7 @@ namespace transport_management_system.SQLBuilder
             _ => throw new ArgumentOutOfRangeException(nameof(@operator), @operator, null)
         };
 
-        public SqlQueryResult Build()
+        public MySqlSelectQuery Build()
         {
             var query = new StringBuilder();
 
@@ -88,7 +94,7 @@ namespace transport_management_system.SQLBuilder
 
             Reset();
 
-            return new SqlQueryResult(query.ToString());
+            return new MySqlSelectQuery(query.ToString(), _parameters);
         }
 
         private void Reset()

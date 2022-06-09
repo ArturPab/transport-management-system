@@ -1,4 +1,4 @@
-﻿namespace transport_management_system.MVVM.Model
+﻿namespace transport_management_system.Domain
 {
     public class Address
     {
