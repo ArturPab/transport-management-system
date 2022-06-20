@@ -32,7 +32,7 @@ namespace transport_management_system.Infrastructure.SQL
             var results = new List<T>();
             var reader = command.ExecuteReader();
 
-            while (reader.Read()) 
+            while (reader.Read())
             {
                 var model = (T)Activator.CreateInstance(typeof(T), reader)!;
                 results.Add(model);

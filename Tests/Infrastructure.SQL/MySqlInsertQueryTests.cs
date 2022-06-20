@@ -1,11 +1,11 @@
-﻿using Xunit;
-using FluentAssertions;
+﻿using FluentAssertions;
 using transport_management_system.Domain;
 using transport_management_system.Infrastructure.SQL;
 using transport_management_system.Infrastructure.SQL.Enums;
 using transport_management_system.Infrastructure.SQL.QueryBuilders;
+using Xunit;
 
-namespace Tests.SqlBuilder
+namespace Tests.Infrastructure.SQL
 {
     public class MySqlInsertQueryTests
     {
@@ -16,7 +16,7 @@ namespace Tests.SqlBuilder
 
             var id = new MySqlInsertQuery<Car>("car", car).ExecuteQuery();
 
-            
+
             var selectBuilder = new MySqlSelectQueryBuilder();
             var selectedCars = selectBuilder.SelectAllProperties<Car>()
                 .From("car")

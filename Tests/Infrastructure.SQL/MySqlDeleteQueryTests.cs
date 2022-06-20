@@ -5,7 +5,7 @@ using transport_management_system.Infrastructure.SQL.QueryBuilders;
 using transport_management_system.MVVM.Model;
 using Xunit;
 
-namespace Tests.InfrastructureSQL
+namespace Tests.Infrastructure.SQL
 {
     public class MySqlDeleteQueryTests
     {
