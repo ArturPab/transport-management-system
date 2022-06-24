@@ -42,7 +42,7 @@ namespace transport_management_system.Infrastructure.SQL
             connection.Close();
 
             var id = command.LastInsertedId;
-            
+
             return id;
         }
 

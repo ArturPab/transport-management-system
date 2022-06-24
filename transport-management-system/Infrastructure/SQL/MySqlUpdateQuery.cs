@@ -1,22 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using MySql.Data.MySqlClient;
 using transport_management_system.Database;
+using transport_management_system.Domain;
 
 namespace transport_management_system.Infrastructure.SQL
 {
-    public class MySqlSelectQuery
+    public class MySqlUpdateQuery
     {
         private readonly string _query;
         private readonly List<MySqlParameter> _parameters;
 
-        public MySqlSelectQuery(string query, List<MySqlParameter> parameters)
+        public MySqlUpdateQuery(string query, List<MySqlParameter> parameters)
         {
             _query = query;
             _parameters = parameters;
         }
 
-        public List<T> ExecuteQuery<T>() where T : class
+        public void ExecuteQuery()
         {
             using var connection = DbConnectionService.Instance.Connection;
 
@@ -28,19 +28,8 @@ namespace transport_management_system.Infrastructure.SQL
             }
 
             connection.Open();
-
-            var results = new List<T>();
-            var reader = command.ExecuteReader();
-
-            while (reader.Read())
-            {
-                var model = (T)Activator.CreateInstance(typeof(T), reader)!;
-                results.Add(model);
-            }
-
+            command.ExecuteNonQuery();
             connection.Close();
-
-            return results;
         }
     }
 }
