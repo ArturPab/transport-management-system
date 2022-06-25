@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using transport_management_system.Common.Lookups;
 
 namespace transport_management_system.Domain;
 
@@ -22,14 +23,14 @@ public class Car
         Payload = payload;
         ProductionYear = productionYear;
         Vin = vin;
-        StatusId = 1;
+        StatusId = (int) CarStatus.Available;
     }
 
     public int? Id { get; set; }
-    public string? Mark { get; set; }
-    public string? Model { get; set; }
-    public float? Payload { get; set; }
-    public string? ProductionYear { get; set; }
-    public string? Vin { get; set; }
+    public string Mark { get; set; }
+    public string Model { get; set; }
+    public float Payload { get; set; }
+    public string ProductionYear { get; set; }
+    public string Vin { get; set; }
     public int StatusId { get; set; }
 }

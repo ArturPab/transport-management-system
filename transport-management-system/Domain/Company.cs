@@ -12,8 +12,15 @@ public class Company
         Regon = reader.GetString("Regon");
     }
 
+    public Company(string name, string nip, string regon)
+    {
+        Name = name;
+        Nip = nip;
+        Regon = regon;
+    }
+
     public int? Id { get; set; }
-    public string? Name { get; set; }
-    public string? Nip { get; set; }
-    public string? Regon { get; set; }
+    public string Name { get; set; }
+    public string Nip { get; set; }
+    public string Regon { get; set; }
 }
