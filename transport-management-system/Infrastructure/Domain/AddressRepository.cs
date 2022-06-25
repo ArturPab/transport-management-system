@@ -68,7 +68,7 @@ namespace transport_management_system.Infrastructure.Domain
 
         public void RemoveAddress(int id)
         {
-            new MySqlDeleteQueryBuilder().From(TableName).Where("Id", WhereOperators.Equal, id);
+            new MySqlDeleteQueryBuilder().From(TableName).Where("Id", WhereOperators.Equal, id).Build().ExecuteQuery();
 
         }
 
@@ -77,7 +77,7 @@ namespace transport_management_system.Infrastructure.Domain
             if (address.Id == null)
                 throw new ArgumentException("Address has no Id");
 
-            new MySqlDeleteQueryBuilder().From(TableName).Where("Id", WhereOperators.Equal, address.Id);
+            new MySqlDeleteQueryBuilder().From(TableName).Where("Id", WhereOperators.Equal, address.Id).Build().ExecuteQuery();
         }
 
         #endregion

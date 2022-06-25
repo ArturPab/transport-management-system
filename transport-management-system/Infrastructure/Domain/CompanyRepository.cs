@@ -68,7 +68,7 @@ namespace transport_management_system.Infrastructure.Domain
 
         public void RemoveCompany(int id)
         {
-            new MySqlDeleteQueryBuilder().From(TableName).Where("Id", WhereOperators.Equal, id);
+            new MySqlDeleteQueryBuilder().From(TableName).Where("Id", WhereOperators.Equal, id).Build().ExecuteQuery();
 
         }
 
@@ -77,7 +77,7 @@ namespace transport_management_system.Infrastructure.Domain
             if (company.Id == null)
                 throw new ArgumentException("Company has no Id");
 
-            new MySqlDeleteQueryBuilder().From(TableName).Where("Id", WhereOperators.Equal, company.Id);
+            new MySqlDeleteQueryBuilder().From(TableName).Where("Id", WhereOperators.Equal, company.Id).Build().ExecuteQuery();
         }
 
         #endregion

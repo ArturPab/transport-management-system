@@ -68,7 +68,7 @@ namespace transport_management_system.Infrastructure.Domain
 
         public void RemoveRoute(int id)
         {
-            new MySqlDeleteQueryBuilder().From(TableName).Where("Id", WhereOperators.Equal, id);
+            new MySqlDeleteQueryBuilder().From(TableName).Where("Id", WhereOperators.Equal, id).Build().ExecuteQuery();
 
         }
 
@@ -77,7 +77,7 @@ namespace transport_management_system.Infrastructure.Domain
             if (route.Id == null)
                 throw new ArgumentException("Route has no Id");
 
-            new MySqlDeleteQueryBuilder().From(TableName).Where("Id", WhereOperators.Equal, route.Id);
+            new MySqlDeleteQueryBuilder().From(TableName).Where("Id", WhereOperators.Equal, route.Id).Build().ExecuteQuery();
         }
 
         #endregion
