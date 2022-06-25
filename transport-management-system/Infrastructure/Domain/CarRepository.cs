@@ -68,7 +68,7 @@ namespace transport_management_system.Infrastructure.Domain
 
         public void RemoveCar(int id)
         {
-            new MySqlDeleteQueryBuilder().From(TableName).Where("Id", WhereOperators.Equal, id);
+            new MySqlDeleteQueryBuilder().From(TableName).Where("Id", WhereOperators.Equal, id).Build().ExecuteQuery();
 
         }
 
@@ -77,7 +77,7 @@ namespace transport_management_system.Infrastructure.Domain
             if (car.Id == null)
                 throw new ArgumentException("Car has no Id");
 
-            new MySqlDeleteQueryBuilder().From(TableName).Where("Id", WhereOperators.Equal, car.Id);
+            new MySqlDeleteQueryBuilder().From(TableName).Where("Id", WhereOperators.Equal, car.Id).Build().ExecuteQuery();
         }
 
         #endregion
