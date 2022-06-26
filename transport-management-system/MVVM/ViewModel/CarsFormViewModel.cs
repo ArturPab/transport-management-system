@@ -12,8 +12,8 @@ namespace transport_management_system.MVVM.ViewModel
 {
     internal class CarsFormViewModel
     {
-        private List<CarStatusModel> _carStatuses;
-        public List<CarStatusModel> CarStatuses => _carStatuses;
+        private Dictionary<int, string> _carStatuses;
+        public Dictionary<int, string> CarStatuses => _carStatuses;
 
         private bool _isUpdateForm = false;
         private NavigationViewModel SelectedViewModel { get; set; }
@@ -54,14 +54,7 @@ namespace transport_management_system.MVVM.ViewModel
 
         private void SetCarStatuses()
         {
-            _carStatuses = new List<CarStatusModel>();
-            foreach (var carStatusDescription in CarStatusLookup.Descriptions) {
-                _carStatuses.Add(new()
-                {
-                    StatusId = carStatusDescription.Key,
-                    Status = carStatusDescription.Value
-                });
-            }
+            _carStatuses = CarStatusLookup.Descriptions;
         }
 
         private void SetCurrentStatusId()
