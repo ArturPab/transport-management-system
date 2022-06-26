@@ -5,6 +5,10 @@ namespace transport_management_system.Domain;
 
 public class Car
 {
+    public Car()
+    {
+    }
+
     public Car(MySqlDataReader reader)
     {
         Id = reader.GetInt32("Id");

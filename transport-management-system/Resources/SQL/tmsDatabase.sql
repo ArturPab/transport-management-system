@@ -93,11 +93,9 @@ CREATE TABLE if not EXISTS `realizes` (
   CONSTRAINT `fk_order` FOREIGN KEY (`OrderId`) REFERENCES `order` (`Id`)
 ) ENGINE=InnoDB;
 
-delete from carStatus;
-insert into carStatus values (1, 'available'), (2, 'busy'), (3, 'broken');
+insert ignore into carStatus values (1, 'available'), (2, 'busy'), (3, 'broken');
 
-delete from orderStatus;
-insert into orderStatus values (1, 'pending'), (2, 'in progress'), (3, 'done');
+insert ignore into orderStatus values (1, 'pending'), (2, 'in progress'), (3, 'done');
 
 
 
