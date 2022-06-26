@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Input;
+using transport_management_system.Infrastructure;
 
 namespace transport_management_system
 {
@@ -8,6 +9,7 @@ namespace transport_management_system
         public MainWindow()
         {
             InitializeComponent();
+            DbCreator.Create();
         }
 
         private void CloseApplicationOnClick(object sender, RoutedEventArgs e)

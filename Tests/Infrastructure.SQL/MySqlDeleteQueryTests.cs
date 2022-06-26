@@ -13,13 +13,12 @@ namespace Tests.Infrastructure.SQL
         public void MySqlDeleteQuery_ForGivenId_DeleteARightDatabaseRecord()
         {
             var driver = new Driver
-            {
-                Id = null,
-                FirstName = "Adam",
-                LastName = "Szklany",
-                Pesel = "12345678901",
-                Salary = 3600
-            };
+            (
+                "Adam",
+                "Szklany",
+                "12345678901",
+                3600
+            );
             var id = new MySqlInsertQuery<Driver>("driver", driver).ExecuteQuery();
 
             new MySqlDeleteQueryBuilder()

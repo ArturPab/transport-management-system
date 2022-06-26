@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using MySql.Data.MySqlClient;
-using transport_management_system.Database;
 
 namespace transport_management_system.Infrastructure.SQL
 {

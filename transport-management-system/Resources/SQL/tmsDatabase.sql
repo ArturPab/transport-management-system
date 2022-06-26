@@ -1,6 +1,6 @@
 ﻿create database if not exists tms;
 
-use tms
+use tms;
 
 CREATE TABLE if not EXISTS `address` (
   `Id` int NOT NULL AUTO_INCREMENT,

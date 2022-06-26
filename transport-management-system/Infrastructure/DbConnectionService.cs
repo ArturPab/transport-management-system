@@ -1,6 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 
-namespace transport_management_system.Database
+namespace transport_management_system.Infrastructure
 {
     public class DbConnectionService
     {
