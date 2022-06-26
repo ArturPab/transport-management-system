@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 using transport_management_system.Common.Lookups;
 using transport_management_system.Core;
@@ -11,7 +12,9 @@ namespace transport_management_system.MVVM.ViewModel
 {
     internal class CarsFormViewModel
     {
-        public Collection<CarStatusModel> CarStatuses;
+        private List<CarStatusModel> _carStatuses;
+        public List<CarStatusModel> CarStatuses => _carStatuses;
+
         private bool _isUpdateForm = false;
         private NavigationViewModel SelectedViewModel { get; set; }
         public CarDTO Car { get; set; }
@@ -51,9 +54,9 @@ namespace transport_management_system.MVVM.ViewModel
 
         private void SetCarStatuses()
         {
-            CarStatuses = new Collection<CarStatusModel>();
+            _carStatuses = new List<CarStatusModel>();
             foreach (var carStatusDescription in CarStatusLookup.Descriptions) {
-                CarStatuses.Add(new()
+                _carStatuses.Add(new()
                 {
                     StatusId = carStatusDescription.Key,
                     Status = carStatusDescription.Value
