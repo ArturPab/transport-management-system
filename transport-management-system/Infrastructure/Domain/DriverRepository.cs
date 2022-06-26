@@ -10,6 +10,10 @@ namespace transport_management_system.Infrastructure.Domain
 {
     public class DriverRepository
     {
+
+        private static DriverRepository? _instance;
+        public static DriverRepository Instance => _instance ??= new DriverRepository();
+
         private const string TableName = "Driver";
 
         #region SELECT

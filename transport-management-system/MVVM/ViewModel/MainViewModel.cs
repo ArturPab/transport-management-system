@@ -1,67 +1,46 @@
-﻿using transport_management_system.Core;
+﻿using System.Windows.Input;
+using transport_management_system.Core;
 
 namespace transport_management_system.MVVM.ViewModel
 {
     class MainViewModel : ObservableObject
     {
 
-        public RelayCommand CarsViewCommand { get; set; }
-        public RelayCommand CompaniesViewCommand { get; set; }
-        public RelayCommand DriversViewCommand { get; set; }
-        public RelayCommand OrdersViewCommand { get; set; }
-        public RelayCommand RoutesViewCommand { get; set; }
-
-        public CarsViewModel CarsVM { get; set; }
-        public CompaniesViewModel CompaniesVM { get; set; }
-        public DriversViewModel DriversVM { get; set; }
-        public OrdersViewModel OrdersVM { get; set; }
-        public RoutesViewModel RoutesVM { get; set; }
-
-        private object currentView;
-
-        public object CurrentView
-        {
-            get { return currentView; }
-            set
-            {
-                currentView = value;
-                OnPropertyChanged();
-            }
-        }
+        public ICommand CarsViewCommand { get; set; }
+        public ICommand CompaniesViewCommand { get; set; }
+        public ICommand DriversViewCommand { get; set; }
+        public ICommand OrdersViewCommand { get; set; }
+        public ICommand RoutesViewCommand { get; set; }
+        public NavigationViewModel SelectedViewModel { get; set; }
 
         public MainViewModel()
         {
-            CarsVM = new CarsViewModel();
-            CompaniesVM = new CompaniesViewModel();
-            DriversVM = new DriversViewModel();
-            OrdersVM = new OrdersViewModel();
-            RoutesVM = new RoutesViewModel();
-
-            CurrentView = OrdersVM;
+            SelectedViewModel = new NavigationViewModel();
+            SelectedViewModel.SelectedViewModel = new OrdersViewModel(SelectedViewModel);
 
             CarsViewCommand = new RelayCommand(o =>
             {
-                CurrentView = CarsVM;
+                SelectedViewModel.SelectedViewModel = new CarsViewModel(SelectedViewModel);
             });
 
             CompaniesViewCommand = new RelayCommand(o =>
             {
-                CurrentView = CompaniesVM;
+                SelectedViewModel.SelectedViewModel = new CompaniesViewModel(SelectedViewModel);
             });
 
             DriversViewCommand = new RelayCommand(o =>
             {
-                CurrentView = DriversVM;
+                SelectedViewModel.SelectedViewModel = new DriversViewModel(SelectedViewModel);
             });
 
             OrdersViewCommand = new RelayCommand(o =>
             {
-                CurrentView = OrdersVM;
+                SelectedViewModel.SelectedViewModel = new OrdersViewModel(SelectedViewModel);
             });
 
             RoutesViewCommand = new RelayCommand(o =>
             {
-                CurrentView = RoutesVM;
+                SelectedViewModel.SelectedViewModel = new RoutesViewModel(SelectedViewModel);
             });
         }
     }

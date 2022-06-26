@@ -32,6 +32,9 @@
             <DataTemplate DataType="{x:Type viewModel:RoutesViewModel}">
                 <view:RoutesView/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:DriversFormViewModel}">
+                <view:DriversFormView/>
+            </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

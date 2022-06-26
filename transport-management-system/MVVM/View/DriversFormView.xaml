@@ -1,0 +1,131 @@
+﻿<UserControl x:Class="transport_management_system.MVVM.View.DriversFormView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:transport_management_system.MVVM.View"
+             xmlns:viewModel="clr-namespace:transport_management_system.MVVM.ViewModel"
+             d:DataContext="{d:DesignInstance Type=viewModel:DriversFormViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="540" d:DesignWidth="720">
+    <Border Background="#EEEEEE" Padding="60,60,60,60">
+        <Grid Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="8*" />
+                <RowDefinition Height="4*" />
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0">
+                <Border BorderThickness="0,0,0,2" BorderBrush="#272537" HorizontalAlignment="Left" Height="60">
+                    <TextBlock 
+                        Text="Dodaj kierowcę"
+                        FontSize="35"
+                        FontWeight="DemiBold"
+                        FontFamily="0Arame"
+                        Foreground="#16151e"
+                        VerticalAlignment="Center" />
+                </Border>
+            </StackPanel>
+            <Grid Grid.Row="1" Margin="0,0,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="5*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                </Grid.RowDefinitions>
+                <Label 
+                    FontSize="25"
+                    FontWeight="DemiBold"
+                    FontFamily="0Arame"
+                    Foreground="#16151e" 
+                    VerticalAlignment="Center">
+                    Imię:
+                </Label>
+                <TextBox Grid.Column="1" Height="50"                     
+                    FontSize="25"
+                    FontFamily="0Arame"
+                    Foreground="#16151e" 
+                    VerticalContentAlignment="Center"  
+                    Padding="10,0,0,0"
+                    Text="{Binding Driver.FirstName}"
+                     />
+                <Label 
+                    Grid.Row="1"
+                    FontSize="20"
+                    FontWeight="DemiBold"
+                    FontFamily="0Arame"
+                    Foreground="#16151e" 
+                    VerticalAlignment="Center">
+                    Nazwisko:
+                </Label>
+                <TextBox Grid.Row="1" Grid.Column="1" Height="50" 
+                    Text="{Binding Driver.LastName}"
+                    FontSize="25"
+                    FontFamily="0Arame"
+                    Foreground="#16151e" 
+                    VerticalContentAlignment="Center"  
+                    Padding="10,0,0,0"/>
+                <Label 
+                    Grid.Row="2"
+                    FontSize="20"
+                    FontWeight="DemiBold"
+                    FontFamily="0Arame"
+                    Foreground="#16151e" 
+                    VerticalAlignment="Center">
+                    Pesel:
+                </Label>
+                <TextBox Grid.Row="2" Grid.Column="2" Height="50"
+                    Text="{Binding Driver.Pesel}"
+                    FontSize="25"
+                    FontFamily="0Arame"
+                    Foreground="#16151e" 
+                    VerticalContentAlignment="Center"  
+                    Padding="10,0,0,0"/>
+                <Label 
+                    Grid.Row="3"
+                    FontSize="20"
+                    FontWeight="DemiBold"
+                    FontFamily="0Arame"
+                    Foreground="#16151e" 
+                    VerticalAlignment="Center">
+                    Stawka:
+                </Label>
+                <TextBox Grid.Row="3" Grid.Column="2" Height="50"
+                    Text="{Binding Driver.Salary}"
+                    FontSize="25"
+                    FontFamily="0Arame"
+                    Foreground="#16151e" 
+                    VerticalContentAlignment="Center"  
+                    Padding="10,0,0,0"/>
+            </Grid>
+            <Border 
+                    Grid.Row="2"
+                    CornerRadius="5"
+                    Background="#272537"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center">
+                <Button
+                        Content="Dodaj kierowcę"
+                        Command="{Binding UpdateDriverTableCommand}"
+                        Foreground="White"
+                        FontFamily="0Arame"
+                        FontSize="20"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        FontWeight="DemiBold"
+                        Width="200"
+                        Height="50"
+                        BorderThickness="0"
+                        Background="Transparent"
+                        />
+            </Border>
+        </Grid>
+    </Border>
+</UserControl>
