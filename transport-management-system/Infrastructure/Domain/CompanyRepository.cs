@@ -10,6 +10,8 @@ namespace transport_management_system.Infrastructure.Domain
 {
     public class CompanyRepository
     {
+        private static CompanyRepository? _instance;
+        public static CompanyRepository Instance => _instance ??= new CompanyRepository();
         private const string TableName = "Company";
 
         #region SELECT
