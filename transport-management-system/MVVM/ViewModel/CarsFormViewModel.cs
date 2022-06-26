@@ -46,9 +46,9 @@ namespace transport_management_system.MVVM.ViewModel
 
         public CarsFormViewModel(NavigationViewModel selectedViewModel, object car)
         {
-            SetCarStatuses();
             SetCar(car);
             SetCurrentStatusId();
+            SetCarStatuses();
             SelectedViewModel = selectedViewModel;
         }
 
@@ -59,7 +59,13 @@ namespace transport_management_system.MVVM.ViewModel
 
         private void SetCurrentStatusId()
         {
-            CurrentStatusId = Car.StatusId;
+            if(Car.StatusId == 0)
+            {
+                CurrentStatusId = Car.StatusId;
+            } else
+            {
+                CurrentStatusId = Car.StatusId - 1;
+            }
         }
 
         private void SetCar(object car)
@@ -98,7 +104,7 @@ namespace transport_management_system.MVVM.ViewModel
                 Payload = Car.Payload,
                 ProductionYear = Car.ProductionYear,
                 Vin = Car.Vin,
-                StatusId = GetStatusId()
+                StatusId = CurrentStatusId+1
         };
 
             return car;

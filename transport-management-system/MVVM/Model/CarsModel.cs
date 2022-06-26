@@ -48,7 +48,7 @@ namespace transport_management_system.MVVM.Model
         {
             if (IsCar(car))
             {
-                int carId = (int)(car as Car).Id;
+                int carId = (int)((CarDTO) car).Id;
                 CarRepository.Instance.RemoveCar(carId);
                 SetCars();
             }
