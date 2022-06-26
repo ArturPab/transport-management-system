@@ -112,7 +112,7 @@
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center">
                 <Button
-                        Content="Dodaj kierowcę"
+                        Content="Zatwierdź"
                         Command="{Binding UpdateDriverTableCommand}"
                         Foreground="White"
                         FontFamily="0Arame"
