@@ -5,11 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:transport_management_system.MVVM.View"
              xmlns:viewModel="clr-namespace:transport_management_system.MVVM.ViewModel"
+             d:DataContext="{d:DesignInstance Type=viewModel:RoutesViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="540" d:DesignWidth="720">
-    <UserControl.DataContext>
-        <viewModel:RoutesViewModel />
-    </UserControl.DataContext>
     <Grid>
             
     </Grid>

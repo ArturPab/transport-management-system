@@ -28,7 +28,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="MVVM\Model\" />
+	  <Folder Include="Infrastructure\Domain\" />
 	</ItemGroup>
 
 </Project>

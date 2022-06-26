@@ -5,12 +5,109 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:transport_management_system.MVVM.View"
              xmlns:viewModel="clr-namespace:transport_management_system.MVVM.ViewModel"
+             d:DataContext="{d:DesignInstance Type=viewModel:DriversViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="540" d:DesignWidth="720">
-    <UserControl.DataContext>
-        <viewModel:DriversViewModel />
-    </UserControl.DataContext>
-    <Grid>
-            
-    </Grid>
+    <Border Background="#EEEEEE" Padding="60,60,60,60">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="13*"/>
+                <RowDefinition/>
+                <RowDefinition Height="70*"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0" Grid.Column="0" Grid.RowSpan="2">
+                <Grid>
+                    <Border BorderThickness="0,0,0,2" BorderBrush="#272537" HorizontalAlignment="Left" Height="60">
+                        <TextBlock 
+                        Text="Wszyscy"
+                        FontSize="35"
+                        FontWeight="DemiBold"
+                        FontFamily="0Arame"
+                        Foreground="#16151e"
+                        VerticalAlignment="Center" />
+                    </Border>
+                    <Border 
+                    CornerRadius="5"
+                    Background="#272537"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center">
+                        <Button
+                        Content="Dodaj kierowcę"
+                        Command="{Binding DriverFormCommand}"
+                        Foreground="White"
+                        FontFamily="0Arame"
+                        FontSize="20"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        FontWeight="DemiBold"
+                        Width="200"
+                        Height="50"
+                        BorderThickness="0"
+                        Background="Transparent"
+                        />
+                    </Border>
+                </Grid>
+            </StackPanel>
+            <Grid Grid.Row="2">
+                <DataGrid ItemsSource="{Binding DriversModel.Drivers}" AutoGenerateColumns="False" CanUserAddRows="False">
+                    <DataGrid.Resources>
+                        <Style TargetType="{x:Type DataGrid}">
+                            <Setter Property="BorderThickness" Value="0,0,0,0"/>
+                        </Style>
+                        <Style TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="Background" Value="#4e496e"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="FontSize" Value="17"/>
+                            <Setter Property="FontWeight" Value="DemiBold"/>
+                            <Setter Property="FontFamily" Value="0Arame"/>
+                            <Setter Property="Height" Value="40"/>
+                            <Setter Property="Padding" Value="20,0,0,0"/>
+                            <Setter Property="BorderThickness" Value="0,0,1,2"/>
+                            <Setter Property="BorderBrush" Value="Gray"/>
+                        </Style>
+                        <Style TargetType="{x:Type DataGridCell}">
+                            <Setter Property="Padding" Value="20,0,0,0"/>
+                            <Setter Property="Foreground" Value="#272537" />
+                            <Setter Property="FontSize" Value="17"/>
+                            <Setter Property="FontWeight" Value="DemiBold"/>
+                            <Setter Property="FontFamily" Value="0Arame"/>
+                            <Setter Property="Height" Value="50"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                        <Border Padding="{TemplateBinding Padding}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                                            <ContentPresenter VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="Background" Value="#eae7fe"/>
+                        </Style>
+                    </DataGrid.Resources>
+
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header=" Imię" Width="2*" Binding="{Binding FirstName}"/>
+                        <DataGridTextColumn Header=" Nazwisko" Width="2*" Binding="{Binding LastName}"/>
+                        <DataGridTextColumn Header=" Pesel" Width="2*" Binding="{Binding Pesel}"/>
+                        <DataGridTextColumn Header=" Pensja" Width="2*" Binding="{Binding Salary}"/>
+                        <DataGridTemplateColumn>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel>
+                                        <Button Content="Edytuj" Command="{Binding Path=DataContext.DriverFormCommand,  RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}"/>
+                                        <Button Content="Usuń" Command="{Binding Path=DataContext.DeleteDriverCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </Grid>
+    </Border>
 </UserControl>

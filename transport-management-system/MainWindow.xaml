@@ -5,17 +5,37 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:transport_management_system"
         xmlns:viewModel="clr-namespace:transport_management_system.MVVM.ViewModel"
+        xmlns:view="clr-namespace:transport_management_system.MVVM.View"
         mc:Ignorable="d"
         Title="MainWindow"
-        Height="600" Width="920"
+        Height="900" Width="1600"
         ResizeMode="NoResize"
         WindowStyle="None"
         Background="Transparent"
         AllowsTransparency="True">
-
     <Window.DataContext>
         <viewModel:MainViewModel />
     </Window.DataContext>
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type viewModel:CarsViewModel}">
+            <view:CarsView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:CompaniesViewModel}">
+            <view:CompaniesView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:DriversViewModel}">
+            <view:DriversView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:OrdersViewModel}">
+            <view:OrdersView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:RoutesViewModel}">
+            <view:RoutesView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:DriversFormViewModel}">
+            <view:DriversFormView/>
+        </DataTemplate>
+    </Window.Resources>
     <Border Background="#272537" CornerRadius="10" MouseDown="Window_MouseDown">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -28,6 +48,50 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
+            <Border CornerRadius="10 10 0 0"  Grid.Row="0"
+                        Grid.ColumnSpan="2">
+                <Border.Background>
+                    <SolidColorBrush Color="Black" Opacity="0.3"/>
+                </Border.Background>
+                <TextBlock 
+                        Grid.Row="0"
+                        Grid.ColumnSpan="2"
+                        Text="System Zarządzający Transportem ®"
+                        TextAlignment="Center"
+                       VerticalAlignment="Center"
+                       FontSize="36"
+                       FontWeight="DemiBold"
+                       Foreground="White" FontFamily="0Arame">
+                    <TextBlock.Effect>
+                        <DropShadowEffect
+                 ShadowDepth="4"
+                      Direction="330"
+                      Color="Black"
+                      Opacity="0.50"
+                      BlurRadius="4"/>
+                    </TextBlock.Effect>
+                </TextBlock>
+            </Border>
+            <Button Grid.Column="1"
+                Width="50"
+                Height="20"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Margin="0,0,50,0"
+                Click="MinimizeApplicationOnClick"
+                Style="{StaticResource WindowBarMinimizeButtonTheme}" />
+            <Button Grid.Column="1"
+                Width="50"
+                Height="20"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Click="CloseApplicationOnClick"
+                Style="{StaticResource WindowBarCloseButtonTheme}"/>
+            <DockPanel LastChildFill="True" Grid.Row="1"
+                            Grid.Column="1"
+                            Margin="0">
+                <ContentControl x:Name="Pages" DockPanel.Dock="Right" Content="{Binding SelectedViewModel.SelectedViewModel}"/>
+            </DockPanel>
             <StackPanel Grid.Row="1"
                         Margin="0, 0, 0, 0">
                 <TextBlock 
@@ -75,7 +139,7 @@
                              Foreground="White"
                              FontSize="14"
                              Style="{StaticResource MenuButtonTheme}"
-                             Command="{Binding DriversView}"/>
+                             Command="{Binding DriversViewCommand}"/>
                 <RadioButton Content="Samochody" 
                              Height="50"
                              Foreground="White"
@@ -95,49 +159,6 @@
                              Style="{StaticResource MenuButtonTheme}"
                              Command="{Binding RoutesViewCommand}"/>
             </StackPanel>
-            <Border CornerRadius="10 10 0 0"  Grid.Row="0"
-                        Grid.ColumnSpan="2">
-                <Border.Background>
-                    <SolidColorBrush Color="Black" Opacity="0.3"/>
-                </Border.Background>
-                <TextBlock 
-                        Grid.Row="0"
-                        Grid.ColumnSpan="2"
-                        Text="System Zarządzający Transportem ®"
-                        TextAlignment="Center"
-                       VerticalAlignment="Center"
-                       FontSize="36"
-                       FontWeight="DemiBold"
-                       Foreground="White" FontFamily="0Arame">
-                    <TextBlock.Effect>
-                        <DropShadowEffect
-                 ShadowDepth="4"
-                      Direction="330"
-                      Color="Black"
-                      Opacity="0.50"
-                      BlurRadius="4"/>
-                    </TextBlock.Effect>
-                </TextBlock>
-            </Border>
-            <Button Grid.Column="1"
-                Width="50"
-                Height="20"
-                HorizontalAlignment="Right"
-                VerticalAlignment="Top"
-                Margin="0,0,50,0"
-                Click="MinimizeApplicationOnClick"
-                Style="{StaticResource WindowBarMinimizeButtonTheme}" />
-            <Button Grid.Column="1"
-                Width="50"
-                Height="20"
-                HorizontalAlignment="Right"
-                VerticalAlignment="Top"
-                Click="CloseApplicationOnClick"
-                Style="{StaticResource WindowBarCloseButtonTheme}"/>
-            <ContentControl Grid.Row="1"
-                            Grid.Column="1"
-                            Margin="0" 
-                            Content="{Binding CurrentView}"/>
         </Grid>
     </Border>
 </Window>

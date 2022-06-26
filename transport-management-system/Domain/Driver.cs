@@ -4,6 +4,10 @@ namespace transport_management_system.MVVM.Model
 {
     public class Driver
     {
+        public Driver()
+        {
+        }
+
         public Driver(MySqlDataReader reader)
         {
             Id = reader.GetInt32("Id");
@@ -22,9 +26,9 @@ namespace transport_management_system.MVVM.Model
         }
 
         public int? Id { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Pesel { get; set; }
-        public decimal Salary { get; set; }
+        public string? FirstName { get; set; }
+        public string? LastName { get; set; }
+        public string? Pesel { get; set; }
+        public decimal? Salary { get; set; }
     }
 }
