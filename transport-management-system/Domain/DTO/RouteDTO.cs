@@ -63,5 +63,18 @@ namespace transport_management_system.Domain.DTO
                 return toAddressBuilder.ToString();
             }
         }
+
+        public string FullRoute
+        {
+            get
+            {
+                StringBuilder toAddressBuilder = new();
+                toAddressBuilder.Append(FromFullAddress);
+                toAddressBuilder.Append(" - ");
+                toAddressBuilder.Append(ToFullAddress);
+
+                return toAddressBuilder.ToString();
+            }
+        }
     }
 }

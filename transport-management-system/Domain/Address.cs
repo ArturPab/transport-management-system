@@ -24,7 +24,8 @@ namespace transport_management_system.Domain
             Id = id;
             Country = country;
             PostalCode = postalCode;
-            City = city; Street = street;
+            City = city; 
+            Street = street;
             BuildingNumber = buildingNumber;
         }
 
@@ -33,6 +34,6 @@ namespace transport_management_system.Domain
         public string PostalCode { get; set; }
         public string City { get; set; }
         public string Street { get; set; }
-        public string BuildingNumber { get; set; }
+        public string? BuildingNumber { get; set; }
     }
 }

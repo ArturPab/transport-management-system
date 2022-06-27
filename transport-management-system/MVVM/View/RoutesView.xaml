@@ -91,9 +91,9 @@
                     </DataGrid.Resources>
 
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header=" Lokalizacja początkowa" Width="4*" Binding="{Binding FromFullAddress}"/>
-                        <DataGridTextColumn Header=" Lokalizacja docelowa" Width="4*" Binding="{Binding ToFullAddress}"/>
-                        <DataGridTextColumn Header=" Km" Width="1*" Binding="{Binding RouteLength}"/>
+                        <DataGridTextColumn IsReadOnly="True" Header=" Lokalizacja początkowa" Width="4*" Binding="{Binding FromFullAddress}"/>
+                        <DataGridTextColumn IsReadOnly="True" Header=" Lokalizacja docelowa" Width="4*" Binding="{Binding ToFullAddress}"/>
+                        <DataGridTextColumn IsReadOnly="True" Header=" Km" Width="1*" Binding="{Binding RouteLength}"/>
                         <DataGridTemplateColumn Width="1*">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>

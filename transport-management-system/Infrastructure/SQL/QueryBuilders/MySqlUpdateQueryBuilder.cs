@@ -38,7 +38,7 @@ namespace transport_management_system.Infrastructure.SQL.QueryBuilders
         {
             var query = new StringBuilder();
 
-            query.Append($"UPDATE {_tableName} ");
+            query.Append($"UPDATE `{_tableName}` ");
 
             var set = new List<string>();
             var properties = typeof(T).GetProperties().Where(p => !p.GetAccessors()[0].IsVirtual && !p.Name.Equals("Id"));

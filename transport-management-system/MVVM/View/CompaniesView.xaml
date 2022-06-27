@@ -91,9 +91,9 @@
                     </DataGrid.Resources>
 
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header=" Nazwa" Width="3*" Binding="{Binding Name}"/>
-                        <DataGridTextColumn Header=" NIP" Width="3*" Binding="{Binding Nip}"/>
-                        <DataGridTextColumn Header=" Regon" Width="3*" Binding="{Binding Regon}"/>
+                        <DataGridTextColumn IsReadOnly="True" Header=" Nazwa" Width="3*" Binding="{Binding Name}"/>
+                        <DataGridTextColumn IsReadOnly="True" Header=" NIP" Width="3*" Binding="{Binding Nip}"/>
+                        <DataGridTextColumn IsReadOnly="True" Header=" Regon" Width="3*" Binding="{Binding Regon}"/>
                         <DataGridTemplateColumn Width="1*">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>

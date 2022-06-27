@@ -70,7 +70,7 @@ namespace transport_management_system.Infrastructure.SQL.QueryBuilders
             query.Append(string.Join(", ", _select));
 
             //FORM
-            query.Append($" FROM {_dataSource}");
+            query.Append($" FROM `{_dataSource}`");
 
             //WHERE
             if (_where.Any())

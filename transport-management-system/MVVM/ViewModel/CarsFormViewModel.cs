@@ -1,12 +1,10 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Windows.Input;
 using transport_management_system.Common.Lookups;
 using transport_management_system.Core;
 using transport_management_system.Domain;
 using transport_management_system.Domain.DTO;
 using transport_management_system.Infrastructure.Domain;
-using transport_management_system.MVVM.Model;
 
 namespace transport_management_system.MVVM.ViewModel
 {
