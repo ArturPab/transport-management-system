@@ -37,7 +37,7 @@
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center">
                         <Button
-                        Content="Dodaj pojazd"
+                        Content="Dodaj zlecenie"
                         Command="{Binding OrderFormCommand}"
                         Foreground="White"
                         FontFamily="0Arame"
@@ -66,17 +66,17 @@
                             <Setter Property="FontWeight" Value="DemiBold"/>
                             <Setter Property="FontFamily" Value="0Arame"/>
                             <Setter Property="Height" Value="40"/>
-                            <Setter Property="Padding" Value="10,0,0,0"/>
+                            <Setter Property="Padding" Value="5,0,0,0"/>
                             <Setter Property="BorderThickness" Value="0,0,1,2"/>
                             <Setter Property="BorderBrush" Value="Gray"/>
                         </Style>
                         <Style TargetType="{x:Type DataGridCell}">
-                            <Setter Property="Padding" Value="10,0,0,0"/>
+                            <Setter Property="Padding" Value="5,0,0,0"/>
                             <Setter Property="Foreground" Value="#272537" />
                             <Setter Property="FontSize" Value="17"/>
                             <Setter Property="FontWeight" Value="DemiBold"/>
                             <Setter Property="FontFamily" Value="0Arame"/>
-                            <Setter Property="Height" Value="50"/>
+                            <Setter Property="Height" Value="auto"/>
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate TargetType="{x:Type DataGridCell}">
@@ -91,12 +91,21 @@
                     </DataGrid.Resources>
 
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header=" Trasa" Width="4*" Binding="{Binding RouteDTO.FullRoute}"/>
+                        <DataGridTemplateColumn Header=" Trasa" Width="6*" >
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock
+                                        Text="{Binding RouteDTO.FullRoute}"
+                                        TextWrapping="Wrap"
+                                        />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
                         <DataGridTextColumn Header=" Firma" Width="4*" Binding="{Binding Company.Name}"/>
-                        <DataGridTextColumn Header=" Cena w zł" Width="5*" Binding="{Binding Price}"/>
-                        <DataGridTextColumn Header=" Liczba kursów" Width="6*" Binding="{Binding NumberOfCourses}"/>
-                        <DataGridTextColumn Header=" Data utworzenia" Width="4*" Binding="{Binding Created}"/>
-                        <DataGridTextColumn Header=" Status" Width="4*" Binding="{Binding OrderStatusName}"/>
+                        <DataGridTextColumn Header=" Cena [zł]" Width="3*" Binding="{Binding Price}"/>
+                        <DataGridTextColumn Header=" Kursy" Width="3*" Binding="{Binding NumberOfCourses}"/>
+                        <DataGridTextColumn Header=" Data utworzenia" Width="6*" Binding="{Binding Created}"/>
+                        <DataGridTextColumn Header=" Status" Width="3*" Binding="{Binding OrderStatusName}"/>
                         <DataGridTemplateColumn Width="2*">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>

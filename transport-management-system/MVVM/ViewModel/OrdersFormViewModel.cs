@@ -22,7 +22,7 @@ namespace transport_management_system.MVVM.ViewModel
         public OrderDTO Order { get; set; }
         public int CurrentStatusId { get; set; }
         public RouteDTO CurrentRoute { get; set; }
-        public int CurrentCompanyId { get; set; }
+        public Company CurrentCompany { get; set; }
 
         private ICommand _updateOrderTableCommand;
         public ICommand UpdateOrderTableCommand
@@ -51,18 +51,13 @@ namespace transport_management_system.MVVM.ViewModel
         public OrdersFormViewModel(NavigationViewModel selectedViewModel, object order)
         {
             SetOrder(order);
-            SetCurrentIds();
+            SetCurrentRoute();
+            SetCurrentCompany();
+            SetCurrentStatusId();
             SetOrderStatuses();
             SetRouteDTOs();
             SetCompanies();
             SelectedViewModel = selectedViewModel;
-        }
-
-        private void SetCurrentIds()
-        {
-            SetCurrentStatusId();
-            SetCurrentRoute();
-            SetCurrentCompanyId();
         }
 
         private void SetCompanies()
@@ -90,35 +85,27 @@ namespace transport_management_system.MVVM.ViewModel
             _orderStatuses = OrderStatusLookup.Descriptions;
         }
 
-        private void SetCurrentCompanyId()
+        private void SetCurrentStatusId()
         {
-            if (Order.CompanyId == 0)
+            if (_isUpdateForm)
             {
-                CurrentCompanyId = Order.CompanyId;
+                CurrentStatusId = Order.OrderStatusId - 1;
             }
-            else
+        }
+
+        private void SetCurrentCompany()
+        {
+            if (_isUpdateForm)
             {
-                CurrentCompanyId = Order.CompanyId - 1;
+                CurrentCompany = Order.Company;
             }
         }
 
         private void SetCurrentRoute()
         {
-            if (Order.RouteId != 0)
+            if (_isUpdateForm)
             {
                 CurrentRoute = Order.RouteDTO;
-            }
-        }
-
-        private void SetCurrentStatusId()
-        {
-            if (Order.OrderStatusId == 0)
-            {
-                CurrentStatusId = Order.OrderStatusId;
-            }
-            else
-            {
-                CurrentStatusId = Order.OrderStatusId - 1;
             }
         }
 
@@ -145,7 +132,7 @@ namespace transport_management_system.MVVM.ViewModel
         {
             Order order = CreateOrder();
             OrderRepository.Instance.AddOrder(order);
-            SelectedViewModel.SelectedViewModel = new CarsViewModel(SelectedViewModel);
+            SelectedViewModel.SelectedViewModel = new OrdersViewModel(SelectedViewModel);
         }
 
         private Order CreateOrder()
@@ -157,21 +144,11 @@ namespace transport_management_system.MVVM.ViewModel
                 Created = GetCreatedDate(),
                 NumberOfCourses = Order.NumberOfCourses,
                 Price = Order.Price,
-                CompanyId = GetCompanyId(),
-                StatusId = GetStatusId(),
+                CompanyId = CurrentCompany.Id,
+                StatusId = CurrentStatusId+1,
             };
 
             return order;
-        }
-
-        private int? GetCompanyId()
-        {
-            if (_isUpdateForm)
-            {
-                return Order.CompanyId;
-            }
-
-            return CurrentCompanyId+1;
         }
 
         private DateTime GetCreatedDate()
@@ -187,22 +164,6 @@ namespace transport_management_system.MVVM.ViewModel
             }
 
             return null;
-        }
-
-        private int GetStatusId()
-        {
-            if (_isUpdateForm)
-            {
-                foreach (var status in OrderStatusLookup.Descriptions)
-                {
-                    if (status.Value.Equals(Order.OrderStatusName))
-                    {
-                        return status.Key;
-                    }
-                }
-            }
-
-            return 1;
         }
 
         private void UpdateOrder(object obj)
