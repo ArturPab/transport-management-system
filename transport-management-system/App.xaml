@@ -41,6 +41,9 @@
             <DataTemplate DataType="{x:Type viewModel:CompaniesFormViewModel}">
                 <view:CompaniesFormView/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:RoutesFormViewModel}">
+                <view:RoutesFormView/>
+            </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

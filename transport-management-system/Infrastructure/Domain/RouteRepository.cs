@@ -10,6 +10,8 @@ namespace transport_management_system.Infrastructure.Domain
 {
     public class RouteRepository
     {
+        private static RouteRepository? _instance;
+        public static RouteRepository Instance => _instance ??= new RouteRepository();
         private const string TableName = "Route";
 
         #region SELECT
@@ -21,6 +23,12 @@ namespace transport_management_system.Infrastructure.Domain
                 .From(TableName)
                 .Build()
                 .ExecuteQuery<Route>();
+
+            foreach (var route in routes)
+            {
+                route.FromAddress = AddressRepository.Instance.GetAddress(route.FromAddressId);
+                route.ToAddress = AddressRepository.Instance.GetAddress(route.ToAddressId);
+            }
 
             return routes;
         }
@@ -36,6 +44,9 @@ namespace transport_management_system.Infrastructure.Domain
 
             if (route == null)
                 throw new ArgumentException($"Route with id: {id} doesn't exist");
+
+            route.FromAddress = AddressRepository.Instance.GetAddress(route.FromAddressId);
+            route.ToAddress = AddressRepository.Instance.GetAddress(route.ToAddressId);
 
             return route;
         }

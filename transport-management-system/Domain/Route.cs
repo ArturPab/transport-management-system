@@ -4,6 +4,10 @@ namespace transport_management_system.Domain
 {
     public class Route
     {
+        public Route()
+        {
+        }
+
         public Route(MySqlDataReader reader)
         {
             Id = reader.GetInt32("Id");
