@@ -153,7 +153,7 @@ namespace transport_management_system.MVVM.ViewModel
 
         private DateTime GetCreatedDate()
         {
-            return Order.Created;
+            return Order.Created.HasValue ? Order.Created.Value : DateTime.Now;
         }
 
         private int? GetOrderId()

@@ -91,12 +91,12 @@
                     </DataGrid.Resources>
 
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header=" Marka" Width="4*" Binding="{Binding Mark}"/>
-                        <DataGridTextColumn Header=" Model" Width="4*" Binding="{Binding Model}"/>
-                        <DataGridTextColumn Header=" Ładowność" Width="5*" Binding="{Binding Payload}"/>
-                        <DataGridTextColumn Header=" Rok produkcji" Width="6*" Binding="{Binding ProductionYear}"/>
-                        <DataGridTextColumn Header=" Vin" Width="4*" Binding="{Binding Vin}"/>
-                        <DataGridTextColumn Header=" Status" Width="4*" Binding="{Binding Status}"/>
+                        <DataGridTextColumn IsReadOnly="True" Header=" Marka" Width="4*" Binding="{Binding Mark}"/>
+                        <DataGridTextColumn IsReadOnly="True" Header=" Model" Width="4*" Binding="{Binding Model}"/>
+                        <DataGridTextColumn IsReadOnly="True" Header=" Ładowność" Width="5*" Binding="{Binding Payload}"/>
+                        <DataGridTextColumn IsReadOnly="True" Header=" Rok produkcji" Width="6*" Binding="{Binding ProductionYear}"/>
+                        <DataGridTextColumn IsReadOnly="True" Header=" Vin" Width="4*" Binding="{Binding Vin}"/>
+                        <DataGridTextColumn IsReadOnly="True" Header=" Status" Width="4*" Binding="{Binding Status}"/>
                         <DataGridTemplateColumn Width="2*">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>

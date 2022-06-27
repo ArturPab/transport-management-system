@@ -24,7 +24,7 @@ namespace transport_management_system.Domain.DTO
         }
 
         public int? Id { get; set; }
-        public DateTime Created { get; set; }
+        public DateTime? Created { get; set; }
         public int NumberOfCourses { get; set; }
         public decimal Price { get; set; }
         public int OrderStatusId { get; set; }

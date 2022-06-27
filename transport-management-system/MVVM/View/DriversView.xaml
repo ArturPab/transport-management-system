@@ -91,10 +91,10 @@
                     </DataGrid.Resources>
 
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header=" Imię" Width="2*" Binding="{Binding FirstName}"/>
-                        <DataGridTextColumn Header=" Nazwisko" Width="2*" Binding="{Binding LastName}"/>
-                        <DataGridTextColumn Header=" Pesel" Width="2*" Binding="{Binding Pesel}"/>
-                        <DataGridTextColumn Header=" Pensja" Width="2*" Binding="{Binding Salary}"/>
+                        <DataGridTextColumn IsReadOnly="True" Header=" Imię" Width="2*" Binding="{Binding FirstName}"/>
+                        <DataGridTextColumn IsReadOnly="True" Header=" Nazwisko" Width="2*" Binding="{Binding LastName}"/>
+                        <DataGridTextColumn IsReadOnly="True" Header=" Pesel" Width="2*" Binding="{Binding Pesel}"/>
+                        <DataGridTextColumn IsReadOnly="True" Header=" Pensja" Width="2*" Binding="{Binding Salary}"/>
                         <DataGridTemplateColumn>
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>

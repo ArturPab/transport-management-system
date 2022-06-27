@@ -101,11 +101,11 @@
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
-                        <DataGridTextColumn Header=" Firma" Width="4*" Binding="{Binding Company.Name}"/>
-                        <DataGridTextColumn Header=" Cena [zł]" Width="3*" Binding="{Binding Price}"/>
-                        <DataGridTextColumn Header=" Kursy" Width="3*" Binding="{Binding NumberOfCourses}"/>
-                        <DataGridTextColumn Header=" Data utworzenia" Width="6*" Binding="{Binding Created}"/>
-                        <DataGridTextColumn Header=" Status" Width="3*" Binding="{Binding OrderStatusName}"/>
+                        <DataGridTextColumn IsReadOnly="True" Header=" Firma" Width="4*" Binding="{Binding Company.Name}"/>
+                        <DataGridTextColumn IsReadOnly="True" Header=" Cena [zł]" Width="3*" Binding="{Binding Price}"/>
+                        <DataGridTextColumn IsReadOnly="True" Header=" Kursy" Width="3*" Binding="{Binding NumberOfCourses}"/>
+                        <DataGridTextColumn IsReadOnly="True" Header=" Data utworzenia" Width="6*" Binding="{Binding Created}"/>
+                        <DataGridTextColumn IsReadOnly="True" Header=" Status" Width="3*" Binding="{Binding OrderStatusName}"/>
                         <DataGridTemplateColumn Width="2*">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>

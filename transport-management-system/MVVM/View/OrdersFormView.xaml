@@ -60,6 +60,7 @@
                     HorizontalAlignment="Left" 
                     SelectedValuePath="Id"
                     SelectedValue="{Binding Path=CurrentRoute.Id, Mode=TwoWay}"
+                    SelectedItem="{Binding CurrentRoute}"
                     ItemsSource="{Binding RouteDTOs}">
                 <ComboBox.ItemTemplate>
                         <DataTemplate>
@@ -85,6 +86,7 @@
                     HorizontalAlignment="Left" 
                     SelectedValuePath="Id"
                     SelectedValue="{Binding Path=CurrentCompany.Id, Mode=TwoWay}"
+                    SelectedItem="{Binding CurrentCompany}"
                     ItemsSource="{Binding Companies}">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
