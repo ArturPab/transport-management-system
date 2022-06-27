@@ -100,11 +100,11 @@ namespace transport_management_system.MVVM.ViewModel
             {
                 Id = GetRouteId(),
                 RouteLength = Route.RouteLength,
-                FromAddressId = (int)GetAddress(Route.FromAddress.Id),
-                ToAddressId = (int)GetAddress(Route.ToAddress.Id),
+                FromAddressId = (int)GetAddressId(Route.FromAddress.Id),
+                ToAddressId = (int)GetAddressId(Route.ToAddress.Id),
                 FromAddress = new()
                 {
-                    Id = GetAddress(Route.FromAddress.Id),
+                    Id = GetAddressId(Route.FromAddress.Id),
                     Country = Route.FromAddress.Country,
                     PostalCode = Route.FromAddress.PostalCode,
                     City = Route.FromAddress.City,
@@ -113,7 +113,7 @@ namespace transport_management_system.MVVM.ViewModel
                 },
                 ToAddress = new()
                 {
-                    Id = GetAddress(Route.ToAddress.Id),
+                    Id = GetAddressId(Route.ToAddress.Id),
                     Country = Route.ToAddress.Country,
                     PostalCode = Route.ToAddress.PostalCode,
                     City = Route.ToAddress.City,
@@ -125,7 +125,7 @@ namespace transport_management_system.MVVM.ViewModel
             return route;
         }
 
-        private int? GetAddress(int? addressId)
+        private int? GetAddressId(int? addressId)
         {
             if (addressId == 0)
             {

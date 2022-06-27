@@ -7,6 +7,10 @@ namespace transport_management_system.MVVM.Model
 {
     public class Order
     {
+        public Order()
+        {
+        }
+
         public Order(MySqlDataReader reader)
         {
             Id = reader.GetInt32("Id");
@@ -33,9 +37,9 @@ namespace transport_management_system.MVVM.Model
         public int NumberOfCourses { get; set; }
         public decimal Price { get; set; }
         public int StatusId { get; set; }
-        public int RouteId { get; set; }
+        public int? RouteId { get; set; }
         public virtual Route? Route { get; set; }
-        public int CompanyId { get; set; }
+        public int? CompanyId { get; set; }
         public virtual Company? Company { get; set; }
     }
 }

@@ -10,6 +10,8 @@ namespace transport_management_system.Infrastructure.Domain
 {
     public class OrderRepository
     {
+        private static OrderRepository? _instance;
+        public static OrderRepository Instance => _instance ??= new OrderRepository();
         private const string TableName = "Order";
 
         #region SELECT
