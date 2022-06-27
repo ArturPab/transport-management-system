@@ -100,6 +100,8 @@ namespace transport_management_system.MVVM.ViewModel
             {
                 Id = GetRouteId(),
                 RouteLength = Route.RouteLength,
+                FromAddressId = (int)GetAddress(Route.FromAddress.Id),
+                ToAddressId = (int)GetAddress(Route.ToAddress.Id),
                 FromAddress = new()
                 {
                     Id = GetAddress(Route.FromAddress.Id),
@@ -117,7 +119,7 @@ namespace transport_management_system.MVVM.ViewModel
                     City = Route.ToAddress.City,
                     Street = Route.ToAddress.Street,
                     BuildingNumber = Route.ToAddress.BuildingNumber
-                }
+                },
             };
 
             return route;
@@ -148,6 +150,7 @@ namespace transport_management_system.MVVM.ViewModel
             Route route = CreateRoute();
             AddressRepository.Instance.UpdateAddress(route.FromAddress);
             AddressRepository.Instance.UpdateAddress(route.ToAddress);
+
             RouteRepository.Instance.UpdateRoute(route);
             SelectedViewModel.SelectedViewModel = new RoutesViewModel(SelectedViewModel);
         }

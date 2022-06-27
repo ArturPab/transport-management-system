@@ -54,7 +54,7 @@ CREATE TABLE if not EXISTS `route` (
   `RouteLength` float DEFAULT NULL,
   `FromAddressId` int DEFAULT NULL,
   `ToAddressId` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`Id`),
   CONSTRAINT `fk_from` FOREIGN KEY (`FromAddressId`) REFERENCES `address` (`Id`),
   CONSTRAINT `fk_to` FOREIGN KEY (`ToAddressId`) REFERENCES `address` (`Id`)
 ) ENGINE=InnoDB;
