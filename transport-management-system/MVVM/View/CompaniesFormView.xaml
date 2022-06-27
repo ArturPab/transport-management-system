@@ -21,7 +21,7 @@
             <StackPanel Grid.Row="0">
                 <Border BorderThickness="0,0,0,2" BorderBrush="#272537" HorizontalAlignment="Left" Height="60">
                     <TextBlock 
-                        Text="Dodaj firmę"
+                        Text="Dodaj zlecenie"
                         FontSize="35"
                         FontWeight="DemiBold"
                         FontFamily="0Arame"

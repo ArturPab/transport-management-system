@@ -21,6 +21,8 @@ namespace transport_management_system.MVVM.ViewModel
         private NavigationViewModel SelectedViewModel { get; set; }
         public OrderDTO Order { get; set; }
         public int CurrentStatusId { get; set; }
+        public RouteDTO CurrentRoute { get; set; }
+        public int CurrentCompanyId { get; set; }
 
         private ICommand _updateOrderTableCommand;
         public ICommand UpdateOrderTableCommand
@@ -49,11 +51,18 @@ namespace transport_management_system.MVVM.ViewModel
         public OrdersFormViewModel(NavigationViewModel selectedViewModel, object order)
         {
             SetOrder(order);
-            SetCurrentStatusId();
+            SetCurrentIds();
             SetOrderStatuses();
             SetRouteDTOs();
             SetCompanies();
             SelectedViewModel = selectedViewModel;
+        }
+
+        private void SetCurrentIds()
+        {
+            SetCurrentStatusId();
+            SetCurrentRoute();
+            SetCurrentCompanyId();
         }
 
         private void SetCompanies()
@@ -79,6 +88,26 @@ namespace transport_management_system.MVVM.ViewModel
         private void SetOrderStatuses()
         {
             _orderStatuses = OrderStatusLookup.Descriptions;
+        }
+
+        private void SetCurrentCompanyId()
+        {
+            if (Order.CompanyId == 0)
+            {
+                CurrentCompanyId = Order.CompanyId;
+            }
+            else
+            {
+                CurrentCompanyId = Order.CompanyId - 1;
+            }
+        }
+
+        private void SetCurrentRoute()
+        {
+            if (Order.RouteId != 0)
+            {
+                CurrentRoute = Order.RouteDTO;
+            }
         }
 
         private void SetCurrentStatusId()
@@ -124,7 +153,7 @@ namespace transport_management_system.MVVM.ViewModel
             Order order = new()
             {
                 Id = GetOrderId(),
-                RouteId = (int)GetRouteId(),
+                RouteId = CurrentRoute.Id,
                 Created = GetCreatedDate(),
                 NumberOfCourses = Order.NumberOfCourses,
                 Price = Order.Price,
@@ -142,22 +171,12 @@ namespace transport_management_system.MVVM.ViewModel
                 return Order.CompanyId;
             }
 
-            return null;
+            return CurrentCompanyId+1;
         }
 
         private DateTime GetCreatedDate()
         {
             return Order.Created;
-        }
-
-        private int? GetRouteId()
-        {
-            if (_isUpdateForm)
-            {
-                return Order.RouteId;
-            }
-
-            return null;
         }
 
         private int? GetOrderId()

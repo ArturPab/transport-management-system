@@ -45,7 +45,7 @@ namespace transport_management_system.Infrastructure.SQL.QueryBuilders
         {
             var query = new StringBuilder();
 
-            query.Append($"DELETE FROM {_tableName}");
+            query.Append($"DELETE FROM `{_tableName}`");
             
             if (_where.Any())
             {

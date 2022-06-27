@@ -48,7 +48,7 @@ namespace transport_management_system.MVVM.Model
             if (IsOrder(order))
             {
                 int orderId = (int)((OrderDTO)order).Id;
-                CarRepository.Instance.RemoveCar(orderId);
+                OrderRepository.Instance.RemoveOrder(orderId);
                 SetOrders();
             }
         }

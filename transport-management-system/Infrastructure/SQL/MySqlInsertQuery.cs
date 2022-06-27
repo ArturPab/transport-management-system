@@ -49,7 +49,7 @@ namespace transport_management_system.Infrastructure.SQL
         {
             var query = new StringBuilder();
 
-            query.Append($"INSERT INTO {_tableName} VALUES(");
+            query.Append($"INSERT INTO `{_tableName}` VALUES(");
 
             var parametersNames = _parameters.Select(p => p.ParameterName);
             query.Append(string.Join(',', parametersNames));

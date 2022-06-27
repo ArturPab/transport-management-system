@@ -100,8 +100,8 @@ namespace transport_management_system.MVVM.ViewModel
             {
                 Id = GetRouteId(),
                 RouteLength = Route.RouteLength,
-                FromAddressId = (int)GetAddressId(Route.FromAddress.Id),
-                ToAddressId = (int)GetAddressId(Route.ToAddress.Id),
+                FromAddressId = (int)(GetAddressId(Route.FromAddress.Id) == null? 0: Route.FromAddress.Id),
+                ToAddressId = (int)(GetAddressId(Route.ToAddress.Id) == null ? 0 : Route.ToAddress.Id),
                 FromAddress = new()
                 {
                     Id = GetAddressId(Route.FromAddress.Id),
