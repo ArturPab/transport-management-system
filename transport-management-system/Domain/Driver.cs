@@ -30,5 +30,7 @@ namespace transport_management_system.MVVM.Model
         public string? LastName { get; set; }
         public string? Pesel { get; set; }
         public decimal? Salary { get; set; }
+        public virtual string FullName => FirstName + " " + LastName;
+        public virtual bool IsSelected { get; set; }
     }
 }

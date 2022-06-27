@@ -10,6 +10,7 @@ namespace transport_management_system.MVVM.ViewModel
         public OrdersModel OrdersModel { get; }
         private ICommand _deleteOrderCommand;
         private ICommand _orderFormCommand;
+        private ICommand _updateDriversCommand;
         public ICommand DeleteOrderCommand
         {
             get
@@ -42,6 +43,22 @@ namespace transport_management_system.MVVM.ViewModel
             }
         }
 
+        public ICommand UpdateDriversCommand
+        {
+            get
+            {
+                if (_updateDriversCommand == null)
+                {
+                    _updateDriversCommand = new RelayCommand(RouteToAssigningToOrderForm);
+                }
+                return _updateDriversCommand;
+            }
+            set
+            {
+                _updateDriversCommand = value;
+            }
+        }
+
         public OrdersViewModel(NavigationViewModel selectedViewModel)
         {
             this.selectedViewModel = selectedViewModel;
@@ -51,6 +68,11 @@ namespace transport_management_system.MVVM.ViewModel
         private void RouteToOrdersForm(object order)
         {
             selectedViewModel.SelectedViewModel = new OrdersFormViewModel(selectedViewModel, order);
+        }
+
+        private void RouteToAssigningToOrderForm(object order)
+        {
+            selectedViewModel.SelectedViewModel = new AssigningToOrderFormViewModel(selectedViewModel, order);
         }
     }
 }

@@ -37,4 +37,6 @@ public class Car
     public string ProductionYear { get; set; }
     public string Vin { get; set; }
     public int StatusId { get; set; }
+    public virtual string FullName => Mark + " " + Model + " " + Payload + "kg";
+    public virtual bool IsSelected { get; set; }
 }
