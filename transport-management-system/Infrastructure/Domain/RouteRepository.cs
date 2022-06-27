@@ -10,6 +10,8 @@ namespace transport_management_system.Infrastructure.Domain
 {
     public class RouteRepository
     {
+        private static RouteRepository? _instance;
+        public static RouteRepository Instance => _instance ??= new RouteRepository();
         private const string TableName = "Route";
 
         #region SELECT

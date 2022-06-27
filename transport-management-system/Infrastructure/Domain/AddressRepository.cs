@@ -10,6 +10,8 @@ namespace transport_management_system.Infrastructure.Domain
 {
     public class AddressRepository
     {
+        private static AddressRepository? _instance;
+        public static AddressRepository Instance => _instance ??= new AddressRepository();
         private const string TableName = "Address";
 
         #region SELECT
