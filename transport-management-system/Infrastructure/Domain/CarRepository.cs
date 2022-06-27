@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using transport_management_system.Common.Lookups;
 using transport_management_system.Domain;
 using transport_management_system.Infrastructure.SQL;
 using transport_management_system.Infrastructure.SQL.Enums;
@@ -22,6 +23,18 @@ namespace transport_management_system.Infrastructure.Domain
             var builder = new MySqlSelectQueryBuilder();
             var cars = builder.SelectAllProperties<Car>()
                 .From(TableName)
+                .Build()
+                .ExecuteQuery<Car>();
+
+            return cars;
+        }
+
+        public IEnumerable<Car> GetAvailableCar()
+        {
+            var builder = new MySqlSelectQueryBuilder();
+            var cars = builder.SelectAllProperties<Car>()
+                .From(TableName)
+                .Where("StatusId", WhereOperators.Equal, (int) CarStatus.Available)
                 .Build()
                 .ExecuteQuery<Car>();
 
