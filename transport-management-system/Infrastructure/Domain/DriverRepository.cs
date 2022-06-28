@@ -71,6 +71,7 @@ namespace transport_management_system.Infrastructure.Domain
 
         public void RemoveDriver(int id)
         {
+            new MySqlDeleteQueryBuilder().From("performs").Where("DriverId", WhereOperators.Equal, id).Build().ExecuteQuery();
             new MySqlDeleteQueryBuilder().From(TableName).Where("Id", WhereOperators.Equal, id).Build().ExecuteQuery();
 
         }
@@ -79,7 +80,7 @@ namespace transport_management_system.Infrastructure.Domain
         {
             if (driver.Id == null)
                 throw new ArgumentException("Driver has no Id");
-
+            new MySqlDeleteQueryBuilder().From("performs").Where("DriverId", WhereOperators.Equal, driver.Id).Build().ExecuteQuery();
             new MySqlDeleteQueryBuilder().From(TableName).Where("Id", WhereOperators.Equal, driver.Id).Build().ExecuteQuery();
         }
 
