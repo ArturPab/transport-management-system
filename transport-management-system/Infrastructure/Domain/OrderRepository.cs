@@ -81,8 +81,9 @@ namespace transport_management_system.Infrastructure.Domain
 
         public void RemoveOrder(int id)
         {
+            new MySqlDeleteQueryBuilder().From("performs").Where("OrderId", WhereOperators.Equal, id).Build().ExecuteQuery();
+            new MySqlDeleteQueryBuilder().From("realizes").Where("OrderId", WhereOperators.Equal, id).Build().ExecuteQuery();
             new MySqlDeleteQueryBuilder().From(TableName).Where("Id", WhereOperators.Equal, id).Build().ExecuteQuery();
-
         }
 
         public void RemoveOrder(Order order)
@@ -90,6 +91,8 @@ namespace transport_management_system.Infrastructure.Domain
             if (order.Id == null)
                 throw new ArgumentException("Order has no Id");
 
+            new MySqlDeleteQueryBuilder().From("performs").Where("OrderId", WhereOperators.Equal, order.Id).Build().ExecuteQuery();
+            new MySqlDeleteQueryBuilder().From("realizes").Where("OrderId", WhereOperators.Equal, order.Id).Build().ExecuteQuery();
             new MySqlDeleteQueryBuilder().From(TableName).Where("Id", WhereOperators.Equal, order.Id).Build().ExecuteQuery();
         }
 
