@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows;
 using transport_management_system.Domain;
 using transport_management_system.Infrastructure.SQL;
 using transport_management_system.Infrastructure.SQL.Enums;
 using transport_management_system.Infrastructure.SQL.QueryBuilders;
+using transport_management_system.MVVM.Model;
 
 namespace transport_management_system.Infrastructure.Domain
 {
@@ -70,14 +72,39 @@ namespace transport_management_system.Infrastructure.Domain
 
         public void RemoveCompany(int id)
         {
-            new MySqlDeleteQueryBuilder().From(TableName).Where("Id", WhereOperators.Equal, id).Build().ExecuteQuery();
+            var builder = new MySqlSelectQueryBuilder();
+            var orders = builder.SelectAllProperties<Order>()
+                .From("Order")
+                .Where("CompanyId", WhereOperators.Equal, id)
+                .Build()
+                .ExecuteQuery<Order>();
 
+            if (orders.Any())
+            {
+                MessageBox.Show("Nie można usunąć firmy dla której wykonywane jest zlecenie");
+                return;
+            }
+
+            new MySqlDeleteQueryBuilder().From(TableName).Where("Id", WhereOperators.Equal, id).Build().ExecuteQuery();
         }
 
         public void RemoveCompany(Company company)
         {
             if (company.Id == null)
                 throw new ArgumentException("Company has no Id");
+
+            var builder = new MySqlSelectQueryBuilder();
+            var orders = builder.SelectAllProperties<Order>()
+                .From("Order")
+                .Where("CompanyId", WhereOperators.Equal, company.Id)
+                .Build()
+                .ExecuteQuery<Order>();
+
+            if (orders.Any())
+            {
+                MessageBox.Show("Nie można usunąć firmy dla której wykonywane jest zlecenie");
+                return;
+            }
 
             new MySqlDeleteQueryBuilder().From(TableName).Where("Id", WhereOperators.Equal, company.Id).Build().ExecuteQuery();
         }

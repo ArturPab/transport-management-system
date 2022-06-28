@@ -52,8 +52,6 @@ namespace transport_management_system.MVVM.Model
             {
                 int routeId = (int)((RouteDTO)route).Id;
                 RouteRepository.Instance.RemoveRoute(routeId);
-                AddressRepository.Instance.RemoveAddress(((RouteDTO)route).ToAddress);
-                AddressRepository.Instance.RemoveAddress(((RouteDTO)route).FromAddress);
                 SetRoutes();
             }
         }

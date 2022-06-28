@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows;
 using transport_management_system.Domain;
 using transport_management_system.Infrastructure.SQL;
 using transport_management_system.Infrastructure.SQL.Enums;
 using transport_management_system.Infrastructure.SQL.QueryBuilders;
+using transport_management_system.MVVM.Model;
 
 namespace transport_management_system.Infrastructure.Domain
 {
@@ -79,8 +81,25 @@ namespace transport_management_system.Infrastructure.Domain
 
         public void RemoveRoute(int id)
         {
+            var builder = new MySqlSelectQueryBuilder();
+            var orders = builder.SelectAllProperties<Order>()
+                .From("Order")
+                .Where("RouteId", WhereOperators.Equal, id)
+                .Build()
+                .ExecuteQuery<Order>();
+
+            if (orders.Any())
+            {
+                MessageBox.Show("Nie można usunąć firmy dla której wykonywane jest zlecenie");
+                return;
+            }
+
+            var route = GetRoute(id);
+
             new MySqlDeleteQueryBuilder().From(TableName).Where("Id", WhereOperators.Equal, id).Build().ExecuteQuery();
 
+            AddressRepository.Instance.RemoveAddress(route.FromAddressId);
+            AddressRepository.Instance.RemoveAddress(route.ToAddressId);
         }
 
         public void RemoveRoute(Route route)
@@ -88,7 +107,23 @@ namespace transport_management_system.Infrastructure.Domain
             if (route.Id == null)
                 throw new ArgumentException("Route has no Id");
 
+            var builder = new MySqlSelectQueryBuilder();
+            var orders = builder.SelectAllProperties<Order>()
+                .From("Order")
+                .Where("RouteId", WhereOperators.Equal, route.Id)
+                .Build()
+                .ExecuteQuery<Order>();
+
+            if (orders.Any())
+            {
+                MessageBox.Show("Nie można usunąć firmy dla której wykonywane jest zlecenie");
+                return;
+            }
+
             new MySqlDeleteQueryBuilder().From(TableName).Where("Id", WhereOperators.Equal, route.Id).Build().ExecuteQuery();
+
+            AddressRepository.Instance.RemoveAddress(route.FromAddressId);
+            AddressRepository.Instance.RemoveAddress(route.ToAddressId);
         }
 
         #endregion
