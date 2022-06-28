@@ -90,7 +90,7 @@ namespace transport_management_system.Infrastructure.Domain
 
             if (orders.Any())
             {
-                MessageBox.Show("Nie można usunąć firmy dla której wykonywane jest zlecenie");
+                MessageBox.Show("Nie można usunąć trasy przypisanej do zlecenia");
                 return;
             }
 
@@ -116,7 +116,7 @@ namespace transport_management_system.Infrastructure.Domain
 
             if (orders.Any())
             {
-                MessageBox.Show("Nie można usunąć firmy dla której wykonywane jest zlecenie");
+                MessageBox.Show("Nie można usunąć trasy przypisanej do zlecenia");
                 return;
             }
 
