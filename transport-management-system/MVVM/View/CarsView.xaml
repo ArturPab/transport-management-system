@@ -101,8 +101,8 @@
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel>
-                                        <Button Content="Edytuj" Command="{Binding Path=DataContext.CarFormCommand,  RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}"/>
-                                        <Button Content="Usuń" Command="{Binding Path=DataContext.DeleteCarCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}"/>
+                                        <Button Content="Edytuj" Width="auto" Command="{Binding Path=DataContext.CarFormCommand,  RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}"/>
+                                        <Button Content="Usuń" Width="auto" Command="{Binding Path=DataContext.DeleteCarCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}"/>
                                     </StackPanel>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>

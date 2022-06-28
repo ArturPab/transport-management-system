@@ -10,6 +10,7 @@
 
 	<ItemGroup>
 	  <PackageReference Include="Caliburn.Micro.Core" Version="4.0.210" />
+	  <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39" />
 	  <PackageReference Include="MySql.Data" Version="8.0.29" />
 	</ItemGroup>
 

@@ -112,6 +112,7 @@
                                     <StackPanel>
                                         <Button Content="Edytuj" Command="{Binding Path=DataContext.OrderFormCommand,  RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}"/>
                                         <Button Content="Usuń" Command="{Binding Path=DataContext.DeleteOrderCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}"/>
+                                        <Button Content="Przypisz" Command="{Binding Path=DataContext.UpdateDriversCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}"/>
                                     </StackPanel>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>

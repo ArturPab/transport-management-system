@@ -81,8 +81,9 @@ namespace transport_management_system.Infrastructure.Domain
 
         public void RemoveOrder(int id)
         {
+            new MySqlDeleteQueryBuilder().From("performs").Where("OrderId", WhereOperators.Equal, id).Build().ExecuteQuery();
+            new MySqlDeleteQueryBuilder().From("realizes").Where("OrderId", WhereOperators.Equal, id).Build().ExecuteQuery();
             new MySqlDeleteQueryBuilder().From(TableName).Where("Id", WhereOperators.Equal, id).Build().ExecuteQuery();
-
         }
 
         public void RemoveOrder(Order order)
@@ -90,6 +91,8 @@ namespace transport_management_system.Infrastructure.Domain
             if (order.Id == null)
                 throw new ArgumentException("Order has no Id");
 
+            new MySqlDeleteQueryBuilder().From("performs").Where("OrderId", WhereOperators.Equal, order.Id).Build().ExecuteQuery();
+            new MySqlDeleteQueryBuilder().From("realizes").Where("OrderId", WhereOperators.Equal, order.Id).Build().ExecuteQuery();
             new MySqlDeleteQueryBuilder().From(TableName).Where("Id", WhereOperators.Equal, order.Id).Build().ExecuteQuery();
         }
 
@@ -97,21 +100,21 @@ namespace transport_management_system.Infrastructure.Domain
 
         #region Assigning
 
-        public void AssignDriversToOrder(Order order, List<Driver> drivers)
+        public void AssignDriversToOrder(int orderId, List<int> driverIds)
         {
-            new MySqlDeleteQueryBuilder().From("performs").Where("OrderId", WhereOperators.Equal, order.Id.Value).Build().ExecuteQuery();
+            new MySqlDeleteQueryBuilder().From("performs").Where("OrderId", WhereOperators.Equal, orderId).Build().ExecuteQuery();
 
-            foreach (var driver in drivers)
+            foreach (var id in driverIds)
             {
-                new MySqlInsertQuery<Performs>("performs", new Performs(order.Id.Value, driver.Id.Value)).ExecuteQuery();
+                new MySqlInsertQuery<Performs>("performs", new Performs(orderId, id)).ExecuteQuery();
             }
         }
 
-        public List<Driver> GetAssignDriversForOrder(Order order)
+        public List<Driver> GetAssignDriversForOrder(int orderId)
         {
             var performs = new MySqlSelectQueryBuilder().SelectAllProperties<Performs>()
                 .From("performs")
-                .Where("OrderId", WhereOperators.Equal, order.Id.Value)
+                .Where("OrderId", WhereOperators.Equal, orderId)
                 .Build()
                 .ExecuteQuery<Performs>();
 
@@ -120,21 +123,21 @@ namespace transport_management_system.Infrastructure.Domain
             return drivers;
         }
 
-        public void AssignCarsToOrder(Order order, List<Car> cars)
+        public void AssignCarsToOrder(int orderId, List<int> carIds)
         {
-            new MySqlDeleteQueryBuilder().From("realizes").Where("OrderId", WhereOperators.Equal, order.Id.Value).Build().ExecuteQuery();
+            new MySqlDeleteQueryBuilder().From("realizes").Where("OrderId", WhereOperators.Equal, orderId).Build().ExecuteQuery();
 
-            foreach (var car in cars)
+            foreach (var id in carIds)
             {
-                new MySqlInsertQuery<Realizes>("realizes", new Realizes(order.Id.Value, car.Id.Value)).ExecuteQuery();
+                new MySqlInsertQuery<Realizes>("realizes", new Realizes(orderId, id)).ExecuteQuery();
             }
         }
 
-        public List<Car> GetAssignCarsForOrder(Order order)
+        public List<Car> GetAssignCarsForOrder(int orderId)
         {
             var realizes = new MySqlSelectQueryBuilder().SelectAllProperties<Realizes>()
                 .From("realizes")
-                .Where("OrderId", WhereOperators.Equal, order.Id.Value)
+                .Where("OrderId", WhereOperators.Equal, orderId)
                 .Build()
                 .ExecuteQuery<Realizes>();
 
